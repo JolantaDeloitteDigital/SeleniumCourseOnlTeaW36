@@ -7,16 +7,28 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.time.Duration;
+import java.util.List;
+
 public class SearchWithDuckDuckGo {
     @Test
     public void searchWithDuckDuckGo() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(16));
         driver.get("https://duckduckgo.com/");
         WebElement searchInput = driver.findElement(By.id("searchbox_input")); // .var
         searchInput.sendKeys("W pustyni i w puszczy");
-        WebElement searchButton = driver.findElement(By.id("search_button_homepage"));
+        WebElement searchButton = driver.findElement(By.cssSelector(".searchbox_searchButton__F5Bwq"));
         searchButton.click();
-        // driver.quit();
+        List<WebElement> searchResults = driver.findElements(By.cssSelector("div#links article h2 a span"));
+        for(int i = 0; i < 3; i++) {
+            WebElement oneSearchResult = searchResults.get(i);
+            String text = oneSearchResult.getText();
+            System.out.println(text);
+        }
+         driver.quit();
+
+        //WebElement loginbutton123 = driver.findElement(By.cssSelector(".btn.btn-info.block.full-width.m-b"));
     }
 }
