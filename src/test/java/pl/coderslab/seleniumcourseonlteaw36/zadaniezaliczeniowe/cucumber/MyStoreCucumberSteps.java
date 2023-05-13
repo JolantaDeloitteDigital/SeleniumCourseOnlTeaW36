@@ -3,6 +3,7 @@ package pl.coderslab.seleniumcourseonlteaw36.zadaniezaliczeniowe.cucumber;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pl.coderslab.seleniumcourseonlteaw36.zadaniezaliczeniowe.MyStoreAccountPage;
@@ -13,11 +14,10 @@ import pl.coderslab.seleniumcourseonlteaw36.zadaniezaliczeniowe.MyStoreLogInPage
 import java.time.Duration;
 
 public class MyStoreCucumberSteps {
+    private WebDriver driver;
     String email = "ixf12630@nezid.com";
     String password = "Test123@";
     String addressesLink = "https://mystore-testlab.coderslab.pl/index.php?controller=addresses";
-
-    private WebDriver driver;
 
     @Given("Page {string} opened in browser")
     public void page_opened_in_browser(String pageUrl) {
